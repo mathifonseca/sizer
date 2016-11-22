@@ -10,8 +10,8 @@ def index():
     return "Hello, World!"
 
 
-@app.route('/shipment', methods=['POST'])
-def calculate_shipment():
+@app.route('/dimensions', methods=['POST'])
+def calculate_dimensions():
 
     json = request.get_json(silent=True)
     errors = check_params(json)
@@ -58,12 +58,14 @@ def decode_image(img):
     except:
         return False
 
+
 def valid_coordinate(str):
     try:
         pattern = re.compile("^\-?\d+(\.\d+)?,\s*\-?\d+(\.\d+)?$")
         return pattern.match(str)
     except:
         return False
+
 
 def calculate_dimensions(img):
     return {
