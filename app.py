@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return "Hello, World!"
+    return jsonify({'ok':True}), 200
 
 
 @app.route('/dimensions', methods=['POST'])
