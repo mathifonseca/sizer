@@ -32,16 +32,6 @@ def check_params(json):
     if not json:
         errors.append(error('Incorrect JSON body'))
 
-    if not 'origin' in json:
-        errors.append(error('Missing parameter', 'origin'))
-    elif not valid_coordinate(json['origin']):
-        errors.append(error('Invalid coordinate', 'origin'))
-
-    if not 'destination' in json:
-        errors.append(error('Missing parameter', 'destination'))
-    elif not valid_coordinate(json['destination']):
-        errors.append(error('Invalid coordinate', 'destination'))
-
     if not 'image' in json:
         errors.append(error('Missing parameter', 'image'))
     elif not decode_image(json['image']):
@@ -55,14 +45,6 @@ def decode_image(img):
         img = img.replace('data:image/png;base64,','')
         img.decode('base64')
         return True
-    except:
-        return False
-
-
-def valid_coordinate(str):
-    try:
-        pattern = re.compile("^\-?\d+(\.\d+)?,\s*\-?\d+(\.\d+)?$")
-        return pattern.match(str)
     except:
         return False
 
