@@ -1,6 +1,7 @@
-#!flask/bin/python
-from flask import Flask, jsonify, request
+from base64 import b64decode
 from random import uniform
+
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
@@ -53,9 +54,9 @@ def check_params(json):
 def decode_image(img):
     try:
         img = img.replace('data:image/png;base64,', '')
-        img.decode('base64')
+        b64decode(img, validate=True)
         return True
-    except:
+    except Exception:
         return False
 
 
